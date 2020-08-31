@@ -47,12 +47,12 @@ public class MailServiceImpl implements MailService {
                     helper.addAttachment(MimeUtility.encodeWord(file.getFilename(), "utf-8", "B"), file);
                 }
             }
-            log.info("邮件开始发送");
+            log.info("start send");
             javaMailSender.send(mimeMessage);
             long sendMillTimes = System.currentTimeMillis() - start;
-            log.info("邮件发送成功,sendTimes=" + sendMillTimes);
+            log.info("mail sended,sendTimes=" + sendMillTimes);
         } catch (Exception e) {
-            log.error("发送html邮件时发生异常！", e);
+            log.error("error！", e);
         }
     }
 
