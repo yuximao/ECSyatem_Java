@@ -126,11 +126,5 @@ public class UserInfo {
 		this.user = user;
 	}
 
-	@Override
-	public String toString() {
-		return "UserInfo [id=" + id + ", phoneNumber=" + phoneNumber + ", firstName=" + firstName
-				+ ", middleName=" + middleName + ", lastName=" + lastName + ", mailAddress=" + mailAddress
-				+ ", occupation=" + occupation + ", user=" + user + "]";
-	}
-
+	
 }

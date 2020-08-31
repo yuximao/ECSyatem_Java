@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.singularity.EamilClassifivationSystem.beans.User;
@@ -20,6 +21,9 @@ public class UserService {
 	
 	@Autowired
 	private UserInfoDao userInfoDao;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	public List<User> getUsers() {
 		return userDao.findAll();
@@ -64,6 +68,14 @@ public class UserService {
 	}
 
     public List<User> checkByUsername(String username) { return userDao.checkByUsername(username);}
+    
+    public Response changePassword(User user) {
+		User u = userDao.findById(user.getId()).get();
+		u.setUsername(user.getUsername());
+		u.setPassword(passwordEncoder.encode(user.getPassword()));
+		userDao.save(u);
+		return new Response(true);
+	}
 
 
 }

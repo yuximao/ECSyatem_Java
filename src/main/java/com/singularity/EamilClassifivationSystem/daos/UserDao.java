@@ -12,5 +12,7 @@ public interface UserDao extends JpaRepository<User, Long> {
 	User findByUsername(String username);
 	
 	 @Query(value = "select *  from ECS_USER where username =:username", nativeQuery = true)
-		List<User> checkByUsername(@Param("username") String username);  
+		List<User> checkByUsername(@Param("username") String username); 
+	 
+	 User findByEmail(String email);
 }
